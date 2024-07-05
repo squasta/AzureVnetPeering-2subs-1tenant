@@ -30,7 +30,8 @@ terraform {
   }
 }
 
-# Configure the Azure Provider
+# The first “azurerm” provider definition is our “default” provider
+# this definition will be used when in a resource definition no provider is specified.
 provider "azurerm" {
   # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
   # More information on the `features` block https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#features
@@ -39,4 +40,22 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false
     }
   }
+  tenant_id       = var.TenantID
+  subscription_id = var.SubscriptionID-Hub
+  client_id       = var.ApplicationID
+  client_secret   = var.ApplicationSecret  
+}
+
+# Second "azurerm" provider definition is our "Subscription-Spoke" provider
+provider "azurerm" {
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
+  tenant_id       = var.TenantID
+  subscription_id = var.SubscriptionID-Spoke
+  client_id       = var.ApplicationID
+  client_secret   = var.ApplicationSecret
+  alias = "Subscription-Spoke"
 }
