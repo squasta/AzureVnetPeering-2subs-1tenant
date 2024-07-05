@@ -59,9 +59,11 @@ variable "VNetID-Hub" {
 variable "PeerName-Spoke2Hub" {
     description = "Azure VNet Peering Name"
     type        = string  
+    default     = "peering-vnet-Spoke2Hub"
 }
 
 variable "PeerName-Hub2Spoke" {
     description = "Azure VNet Peering Name"
     type        = string  
+    default     = "peering-vnet-Hub2Spoke"
 }
