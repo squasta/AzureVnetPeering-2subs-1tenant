@@ -57,5 +57,7 @@ provider "azurerm" {
   subscription_id = var.SubscriptionID-Spoke
   client_id       = var.ApplicationID
   client_secret   = var.ApplicationSecret
+  # Alias for the provider
+  # cf. https://developer.hashicorp.com/terraform/language/providers/configuration#alias-multiple-provider-configurations
   alias = "Subscription-Spoke"
 }
